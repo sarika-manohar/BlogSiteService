@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    mongodb:
+      uri: "mongodb+srv://admin:admin@blogcluster.tulqfsm.mongodb.net/?retryWrites=true&w=majority"
+      database: "UserTable"
+  application:
+    name: AUTH-SERVICE
