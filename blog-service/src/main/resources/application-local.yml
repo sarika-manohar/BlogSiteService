@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: "mongodb+srv://admin:admin@blogcluster.tulqfsm.mongodb.net/?retryWrites=true&w=majority"
+      database: "BlogTable"
+  application:
+    name: BLOG-SERVICE
