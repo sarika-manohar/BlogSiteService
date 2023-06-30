@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ZUUL-GATEWAY
+
+zuul:
+  prefix: /api
+  routes:
+    blogservice:
+      path: /BLOG-SERVICE/**
+      url: http://localhost:8080/
+    authservice:
+      path: /AUTH-SERVICE/**
+      url: http://localhost:8081/
+  #  sensitiveHeaders: Cookie,Set-Cookie

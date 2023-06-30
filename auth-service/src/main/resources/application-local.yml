@@ -6,5 +6,7 @@ spring:
     mongodb:
       uri: "mongodb+srv://admin:admin@blogcluster.tulqfsm.mongodb.net/?retryWrites=true&w=majority"
       database: "UserTable"
+      timeout:
+        milliseconds: 100000
   application:
     name: AUTH-SERVICE
