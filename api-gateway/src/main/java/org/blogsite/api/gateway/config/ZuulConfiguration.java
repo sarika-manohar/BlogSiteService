@@ -1,4 +1,4 @@
-package com.blogsite.api.gateway.config;
+package org.blogsite.api.gateway.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;

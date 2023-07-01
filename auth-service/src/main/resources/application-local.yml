@@ -9,4 +9,4 @@ spring:
       timeout:
         milliseconds: 100000
   application:
-    name: AUTH-SERVICE
+    name: auth-service

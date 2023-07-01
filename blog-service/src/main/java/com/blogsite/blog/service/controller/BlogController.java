@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/blogsite")
 @Slf4j
@@ -28,9 +30,10 @@ public class BlogController {
         return blogname+" deleted successfully";
     }
 
-//    @GetMapping(value="/user/getall")
-//    public String getAllBlogs(@RequestBody Blog blog){
-//        blogRepository.findAllById(blog.);
-//        return blog.getBlogname()+" added successfully";
-//    }
+    @GetMapping(value="/user/getall")
+    public List<Blog> getAllBlogs() throws Exception {
+        return blogDataService.getAllBlogs();
+    }
+
+
 }

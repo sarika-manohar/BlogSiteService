@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -47,5 +48,15 @@ public class BlogDataService {
         }
         blogRepository.delete(deleteBlog);
     }
+
+    public List<Blog> getAllBlogs() throws Exception {
+        log.info("inside get all blogs method");
+        return blogRepository.findAll();
+    }
+
+//    public List<Blog> getBlogsByUser() {
+//        log.info("inside get blogs by user");
+//        return blogRepository.
+//    }
 
 }
