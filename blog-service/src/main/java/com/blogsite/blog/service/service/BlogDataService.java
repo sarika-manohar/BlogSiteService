@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class BlogDataService {
+    @Autowired
+    private HttpServletRequest request;
 
     @Autowired
     private BlogRepository blogRepository;
@@ -21,6 +24,7 @@ public class BlogDataService {
     public Blog ValidateblogDetails(Blog blog) throws Exception {
 
             log.info("inside blog service method");
+            String username = request.getHeader("username");
             String[] noOfWords = blog.getArticle().split("\\s+");
             if (blog.getBlogname() != null && blog.getBlogname().length() < 20) {
                 throw new ServiceException("Blog name must contain more than 20 characters");
@@ -31,6 +35,7 @@ public class BlogDataService {
             if (blog.getArticle() != null && noOfWords.length < 10) {
                 throw new ServiceException("Article must contain more than 1000 words");
             }
+            blog.setUsername(username);
             Calendar calendar = Calendar.getInstance();
             Date now = calendar.getTime();
             blog.setTimestamp(now);

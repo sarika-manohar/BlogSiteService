@@ -17,6 +17,7 @@ public class Blog{
     private String category;
     private String article;
     private String authorname;
+    private String username;
     private Date timestamp;
 
 }

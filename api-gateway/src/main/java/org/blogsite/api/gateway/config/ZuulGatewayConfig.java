@@ -6,6 +6,8 @@ import org.blogsite.api.gateway.service.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +37,11 @@ public class ZuulGatewayConfig extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         String requestUri = request.getRequestURI();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null){
+            String username = authentication.getName();
+            ctx.addZuulRequestHeader("username",username);
+        }
         if(requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall") || requestUri.contentEquals("/blog-api/swagger-ui.html")){
             return null;
         }
