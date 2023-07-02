@@ -2,6 +2,8 @@ package org.blogsite.api.gateway.config;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import org.blogsite.api.gateway.service.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 @Configuration
 public class ZuulGatewayConfig extends ZuulFilter {
 
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
     @Override
     public String filterType() {
         return "pre";
@@ -31,7 +35,7 @@ public class ZuulGatewayConfig extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         String requestUri = request.getRequestURI();
-        if(requestUri.startsWith("/auth-api")){
+        if(requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall")){
             return null;
         }
         if(requestUri.startsWith("/blog-api")){
@@ -42,9 +46,11 @@ public class ZuulGatewayConfig extends ZuulFilter {
                 HttpHeaders headers = new HttpHeaders();
                 headers.set("Authorization", jwtToken);
                 HttpEntity<String> entity = new HttpEntity<>(headers);
-                ResponseEntity<Void> response = restTemplate.exchange("http://zuul-gateway-service/auth-api/api/v1/blogsite/user/validate", HttpMethod.GET,entity, Void.class);
-                if(response.getStatusCode()== HttpStatus.OK){
+                try {
+                    Boolean val = jwtTokenUtil.validateToken(token);
                     return null;
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
