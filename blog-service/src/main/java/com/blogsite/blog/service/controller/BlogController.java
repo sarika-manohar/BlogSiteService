@@ -4,8 +4,10 @@ import com.blogsite.blog.service.entity.Blog;
 import com.blogsite.blog.service.service.BlogDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,9 +33,17 @@ public class BlogController {
     }
 
     @GetMapping(value="/user/getall")
-    public List<Blog> getAllBlogs() throws Exception {
+    public List<Blog> getAllBlogs(@RequestParam("category") String category) throws Exception {
         return blogDataService.getAllBlogs();
     }
 
+    @GetMapping(value="/user/getBlogs")
+    public List<Blog> getMyBlogs() throws Exception {
+        return blogDataService.getMyBlogs();
+    }
 
+    @GetMapping(value="/user/getBlogsBtwDateRange")
+    public List<Blog> getBlogsBetweenRange(@Param("startDate") Date date1, @Param("endDate") Date date2) throws Exception {
+        return blogDataService.getBlogsBetweenDateRange(date1,date2);
+    }
 }
