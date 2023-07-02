@@ -35,7 +35,7 @@ public class ZuulGatewayConfig extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         String requestUri = request.getRequestURI();
-        if(requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall")){
+        if(requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall") || requestUri.contentEquals("/blog-api/swagger-ui.html")){
             return null;
         }
         if(requestUri.startsWith("/blog-api")){
