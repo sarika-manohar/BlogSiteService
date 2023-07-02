@@ -30,7 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/blogsite/user/login","/api/v1/blogsite/user/register", "/api/v1/blogsite/user/validate").permitAll()
+                .antMatchers("/api/v1/blogsite/user/login").permitAll()
+                .antMatchers("/api/v1/blogsite/user/register").permitAll()
+                .antMatchers("/api/v1/blogsite/user/validate").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
