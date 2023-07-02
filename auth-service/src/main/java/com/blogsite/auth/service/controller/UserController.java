@@ -46,9 +46,4 @@ public class UserController {
         return "token: "+jwtTokenUtil.generateToken(authenticationUser.getUsername());
     }
 
-    @GetMapping(value="/user/validate")
-    public String validateToken(@RequestParam("token") String token) throws ServiceException {
-        return jwtTokenUtil.validateToken(token)? "Token is valid": "Invalid token";
-    }
-
 }
