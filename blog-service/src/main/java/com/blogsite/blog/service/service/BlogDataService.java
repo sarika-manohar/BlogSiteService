@@ -76,4 +76,8 @@ public class BlogDataService {
         return blogRepository.findByTimestampBetween(startDate,endDate);
     }
 
+    public List<Blog> getAllBlogsByCategory(String category) {
+        log.info("inside get all blogs by category");
+        return blogRepository.findAllBlogsByCategory(category);
+    }
 }

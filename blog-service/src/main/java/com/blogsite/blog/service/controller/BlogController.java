@@ -33,8 +33,13 @@ public class BlogController {
     }
 
     @GetMapping(value="/user/getall")
-    public List<Blog> getAllBlogs(@RequestParam("category") String category) throws Exception {
-        return blogDataService.getAllBlogs();
+    public List<Blog> getAllBlogs(@RequestParam(required =false) String category) throws Exception {
+        if(category==null) {
+            return blogDataService.getAllBlogs();
+        }
+        else{
+            return blogDataService.getAllBlogsByCategory(category);
+        }
     }
 
     @GetMapping(value="/user/getBlogs")
