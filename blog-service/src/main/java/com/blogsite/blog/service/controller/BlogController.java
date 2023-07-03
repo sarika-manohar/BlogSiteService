@@ -5,8 +5,10 @@ import com.blogsite.blog.service.service.BlogDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +50,8 @@ public class BlogController {
     }
 
     @GetMapping(value="/user/getBlogsBtwDateRange")
-    public List<Blog> getBlogsBetweenRange(@Param("startDate") Date date1, @Param("endDate") Date date2) throws Exception {
-        return blogDataService.getBlogsBetweenDateRange(date1,date2);
+    public List<Blog> getBlogsBetweenRange(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                           @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) throws Exception {
+        return blogDataService.getBlogsBetweenDateRange(startDate,endDate);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -71,8 +72,9 @@ public class BlogDataService {
         return blogRepository.findAllBlogsByUsername(username);
     }
 
-    public List<Blog> getBlogsBetweenDateRange(Date startDate, Date endDate){
+    public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){
         log.info("inside get blogs between date range");
+        log.info(startDate+"----"+endDate);
         return blogRepository.findByTimestampBetween(startDate,endDate);
     }
 
