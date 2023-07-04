@@ -27,7 +27,7 @@ public class UserController {
     JwtTokenUtil jwtTokenUtil;
 
     @PostMapping(value="/user/register")
-    public String addBlog(@RequestBody User user) throws Exception {
+    public String register(@RequestBody User user) throws Exception {
         log.info("inside register user controller");
         userService.registerUser(user);
         return user.getUsername() + " registered successfully";
