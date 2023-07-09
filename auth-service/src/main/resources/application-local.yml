@@ -10,3 +10,5 @@ spring:
         milliseconds: 100000
   application:
     name: auth-service
+  kafka:
+    bootstrap-servers: http://localhost:9092

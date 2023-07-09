@@ -1,5 +1,6 @@
 package com.blogsite.blog.service.service;
 
+import com.blogsite.blog.service.config.KafkaProducerConfig;
 import com.blogsite.blog.service.entity.Blog;
 import com.blogsite.blog.service.exception.ServiceException;
 import com.blogsite.blog.service.repository.BlogRepository;
@@ -21,6 +22,8 @@ public class BlogDataService {
 
     @Autowired
     private BlogRepository blogRepository;
+
+    KafkaProducerConfig config = new KafkaProducerConfig();
 
     public Blog ValidateblogDetails(Blog blog) throws Exception {
 
@@ -69,12 +72,13 @@ public class BlogDataService {
     public List<Blog> getMyBlogs() {
         log.info("inside get blogs by logged in user");
         String username = request.getHeader("username");
+        config.sendLogToKafka("Blogs retrieved by user: "+username);
         return blogRepository.findAllBlogsByUsername(username);
     }
 
     public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){
         log.info("inside get blogs between date range");
-        log.info(startDate+"----"+endDate);
+        config.sendLogToKafka("Blogs retrieved from "+startDate+" to "+endDate);
         return blogRepository.findByTimestampBetween(startDate,endDate);
     }
 

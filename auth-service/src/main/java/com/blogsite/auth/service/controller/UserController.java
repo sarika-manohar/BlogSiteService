@@ -1,5 +1,6 @@
 package com.blogsite.auth.service.controller;
 
+import com.blogsite.auth.service.config.KafkaProducerConfig;
 import com.blogsite.auth.service.entity.User;
 import com.blogsite.auth.service.exception.ServiceException;
 import com.blogsite.auth.service.service.JwtTokenUtil;
@@ -24,6 +25,8 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    KafkaProducerConfig config = new KafkaProducerConfig();
+
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
@@ -31,6 +34,7 @@ public class UserController {
     public String register(@RequestBody User user) throws Exception {
         log.info("inside register user controller");
         userService.registerUser(user);
+        config.sendLogToKafka(user.getUsername() + " registered successfully");
         return user.getUsername() + " registered successfully";
     }
 
@@ -44,6 +48,8 @@ public class UserController {
         catch (Exception e){
             throw new ServiceException("Invalid username or password");
         }
+        config.sendLogToKafka("Authentication successful for user: "+authenticationUser.getUsername());
+        config.sendLogToKafka("Generated JWT token: "+jwtTokenUtil.generateToken(authenticationUser.getUsername()));
         return "token: "+jwtTokenUtil.generateToken(authenticationUser.getUsername());
     }
 
