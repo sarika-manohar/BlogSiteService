@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.Properties;
 
 public class KafkaProducerConfig {
-    private static final String KAFKA_TOPIC = "blog-service";
+    private static final String KAFKA_TOPIC = "blog-topic";
 //    @Value("${spring.kafka.bootstrap-servers}")
-    private String BOOTSTRAP_SERVERS = "http://localhost:9092";
+    private String BOOTSTRAP_SERVERS = "http://localhost:29092";
 
     private final Producer<String, String> kafkaProducer;
 
