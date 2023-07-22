@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/actuator/**","/auth-api/**","/blog-api/api/v1/blogsite/user/getall", "/blog-api/swagger-ui.html","/blog-api/actuator").permitAll()
+                .antMatchers("/blog-api/actuator/**","/auth-api/**","/blog-api/api/v1/blogsite/user/getall", "/blog-api/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
