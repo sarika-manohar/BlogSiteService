@@ -42,7 +42,7 @@ public class ZuulGatewayConfig extends ZuulFilter {
             String username = authentication.getName();
             ctx.addZuulRequestHeader("username",username);
         }
-        if(requestUri.startsWith("/actuator") || requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall") || requestUri.contentEquals("/blog-api/swagger-ui.html")){
+        if(requestUri.startsWith("/actuator/**") || requestUri.startsWith("/auth-api") || requestUri.contentEquals("/blog-api/api/v1/blogsite/user/getall") || requestUri.contentEquals("/blog-api/swagger-ui.html") || requestUri.contentEquals("/blog-api/actuator")){
             return null;
         }
         if(requestUri.startsWith("/blog-api")){
