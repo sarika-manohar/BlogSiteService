@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "42bae943-f519-4983-ad9d-0cc8552fbab0",
+		"name": "blog-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vdXNlcjEiLCJleHAiOjE2ODg5MzQwNDEsImlhdCI6MTY4ODg5ODA0MX0.1mGABqg2Y_MwLTwoImNVnpoyHX704oDxNNB_eJiHDWI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"blogname\": \"blogging-name-test-demo33\",\r\n  \"category\": \"testblog\",\r\n  \"article\": \"we would like to add this as a blog which had certain restrictions for validating article, hence this should be more than 1000 words I guess but not sure exactly what is the count of words given in the code\",\r\n  \"authorname\": \"sarika\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/blog-api/api/v1/blogsite/user/blogs/add/{blogname}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blog-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"blogs",
+						"add",
+						"{blogname}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXI1IiwiZXhwIjoxNjg4OTIwNTA1LCJpYXQiOjE2ODg4ODQ1MDV9.lDK7d1ZWbDvKqZ8U1oWZQJ_6RM2L7z4hvvf49S6PxuM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blog-api/api/v1/blogsite/user/delete/blogging-name-test-demo31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blog-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"delete",
+						"blogging-name-test-demo31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/blog-api/api/v1/blogsite/user/getall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blog-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"getall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllByCategory",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getBlogs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXI1IiwiZXhwIjoxNjg4OTIwNTA1LCJpYXQiOjE2ODg4ODQ1MDV9.lDK7d1ZWbDvKqZ8U1oWZQJ_6RM2L7z4hvvf49S6PxuM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blog-api/api/v1/blogsite/user/getBlogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blog-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"getBlogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBlogsBtwDateRange",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXI1IiwiZXhwIjoxNjg4OTIwNTA1LCJpYXQiOjE2ODg4ODQ1MDV9.lDK7d1ZWbDvKqZ8U1oWZQJ_6RM2L7z4hvvf49S6PxuM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blog-api/api/v1/blogsite/user/getBlogsBtwDateRange?startDate=2023-06-21&endDate=2023-07-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blog-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"getBlogsBtwDateRange"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2023-06-21"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-07-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

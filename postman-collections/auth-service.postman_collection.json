@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "7c33d317-61f3-48fa-a5fe-cb262ac838fd",
+		"name": "auth-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"demouser5\",\r\n    \"email\": \"demouser10gmail.com\",\r\n    \"password\": \"Test12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth-api/api/v1/blogsite/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"demouser1\",\r\n    \"password\": \"Test12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth-api/api/v1/blogsite/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth-api/api/v1/blogsite/user/validate?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIyIiwiZXhwIjoxNjg4MzUzMDYyLCJpYXQiOjE2ODgzMTcwNjJ9.fPELq79LtcmoustIvzAgo1cdMqAX0L5lgjrGkok_JV8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth-api",
+						"api",
+						"v1",
+						"blogsite",
+						"user",
+						"validate"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIyIiwiZXhwIjoxNjg4MzUzMDYyLCJpYXQiOjE2ODgzMTcwNjJ9.fPELq79LtcmoustIvzAgo1cdMqAX0L5lgjrGkok_JV8"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
