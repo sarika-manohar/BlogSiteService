@@ -89,7 +89,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash-kafka.conf:/usr/share/logstash/pipeline/logstash-kafka.conf
     ports:
       - 5044:5044
     depends_on:
