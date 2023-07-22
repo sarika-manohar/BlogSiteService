@@ -1,3 +1,16 @@
+---
+# "`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-
+# Test Commands for the topicname 'nids':
+# ---------------------------------------
+# docker exec -it kafka-cntr bash /bin/kafka-topics --list --bootstrap-server localhost:9092
+# docker exec -it kafka-cntr bash /bin/kafka-console-consumer --topic codespotify-topic --from-beginning --bootstrap-server localhost:9092
+# docker exec -it kafka-cntr bash /bin/kafka-console-producer --topic codespotify-topic --bootstrap-server localhost:9092
+# Notes
+# -----
+# Data will communicate in the direction of kafka-->logstash-->Elasticsearch-->kibana
+# "`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-'"`-._,-._,-'"`-._,-
+
+
 version: '3.3'
 services:
   zookeeper:
