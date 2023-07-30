@@ -30,6 +30,10 @@ public class BlogDataService {
         log.info("inside blog service method");
         String username = request.getHeader("username");
         String[] noOfWords = blog.getArticle().split("\\s+");
+        Blog uniqueBlog = blogRepository.findByBlogname(blog.getBlogname());
+        if(uniqueBlog!=null){
+            throw new ServiceException(uniqueBlog.getBlogname()+" already exists");
+        }
         if (blog.getBlogname() != null && blog.getBlogname().length() < 20) {
             throw new ServiceException("Blog name must contain more than 20 characters");
         }
@@ -82,8 +86,15 @@ public class BlogDataService {
         return blogRepository.findByTimestampBetween(startDate,endDate);
     }
 
-    public List<Blog> getAllBlogsByCategory(String category) {
+    public List<Blog> getAllBlogsByCategory(String category) throws ServiceException {
         log.info("inside get all blogs by category");
-        return blogRepository.findAllBlogsByCategory(category);
+        String username = request.getHeader("username");
+        List<Blog> blogs = blogRepository.findAllBlogsByCategory(category);
+        if(blogs.isEmpty()){
+            throw new ServiceException("No blogs added by user:"+username);
+        }
+        else{
+            return blogs;
+        }
     }
 }

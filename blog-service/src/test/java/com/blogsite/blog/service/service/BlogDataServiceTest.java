@@ -1,6 +1,7 @@
 package com.blogsite.blog.service.service;
 
 import com.blogsite.blog.service.entity.Blog;
+import com.blogsite.blog.service.exception.ServiceException;
 import com.blogsite.blog.service.repository.BlogRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,7 +71,7 @@ class BlogDataServiceTest {
     }
 
     @Test
-    void testGetAllBlogsByCategory() {
+    void testGetAllBlogsByCategory() throws ServiceException {
         when(blogRepository.findAllBlogsByCategory(anyString())).thenReturn(List.of(new Blog("blogname", "category", "article", "authorname", "username", new GregorianCalendar(2023, Calendar.JULY, 4, 22, 25).getTime())));
 
         List<Blog> result = blogDataService.getAllBlogsByCategory("category");

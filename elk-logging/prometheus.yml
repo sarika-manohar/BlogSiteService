@@ -6,10 +6,10 @@ scrape_configs:
     metrics_path: 'auth-api/actuator/prometheus' # Job to scrape application metrics
     scrape_interval: 5s
     static_configs:
-      - targets: ['192.168.29.234:8080']
+      - targets: ['192.168.29.100:8080']
 
   - job_name: 'spring-actuator-blog'
     metrics_path: 'blog-api/actuator/prometheus' # Job to scrape application metrics
     scrape_interval: 5s
     static_configs:
-      - targets: [ '192.168.29.234:8080' ]
+      - targets: [ '192.168.29.100:8080' ]

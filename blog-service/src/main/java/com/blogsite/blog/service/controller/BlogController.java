@@ -21,7 +21,7 @@ public class BlogController {
     private BlogDataService blogDataService;
     KafkaProducerConfig config = new KafkaProducerConfig();
 
-    @PostMapping(value="/user/blogs/add/{blogname}")
+    @PostMapping(value="/user/blogs/add")
     public String addBlog(@RequestBody Blog blog) throws Exception {
         log.info("inside add blog controller");
         blogDataService.ValidateblogDetails(blog);
