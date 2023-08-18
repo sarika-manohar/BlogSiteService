@@ -80,6 +80,13 @@ public class BlogDataService {
         return blogRepository.findAllBlogsByUsername(username);
     }
 
+    public Blog getOneBlog(String blogname){
+        log.info("inside get individual blog");
+        log.info(blogname);
+        config.sendLogToKafka("Individual blog retrieved");
+        return blogRepository.findByBlogname(blogname);
+    }
+
     public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){
         log.info("inside get blogs between date range");
         config.sendLogToKafka("Blogs retrieved from "+startDate+" to "+endDate);

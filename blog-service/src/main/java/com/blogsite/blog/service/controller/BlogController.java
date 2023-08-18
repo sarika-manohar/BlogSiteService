@@ -54,6 +54,11 @@ public class BlogController {
         return blogDataService.getMyBlogs();
     }
 
+    @GetMapping(value="/user/getBlog/{blogname}")
+    public Blog getIndividualBlogs(@PathVariable String blogname) throws Exception {
+        return blogDataService.getOneBlog(blogname);
+    }
+
     @GetMapping(value="/user/getBlogsBtwDateRange")
     public List<Blog> getBlogsBetweenRange(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) throws Exception {
