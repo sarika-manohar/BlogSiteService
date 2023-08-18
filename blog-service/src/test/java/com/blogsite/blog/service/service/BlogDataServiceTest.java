@@ -55,7 +55,7 @@ class BlogDataServiceTest {
     }
 
     @Test
-    void testGetMyBlogs() {
+    void testGetMyBlogs() throws ServiceException {
         when(blogRepository.findAllBlogsByUsername(anyString())).thenReturn(List.of(new Blog("blogname", "category", "article", "authorname", "username", new GregorianCalendar(2023, Calendar.JULY, 4, 22, 25).getTime())));
 
         List<Blog> result = blogDataService.getMyBlogs();

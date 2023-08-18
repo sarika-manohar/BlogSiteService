@@ -73,11 +73,17 @@ public class BlogDataService {
         return blogRepository.findAll();
     }
 
-    public List<Blog> getMyBlogs() {
+    public List<Blog> getMyBlogs() throws ServiceException {
         log.info("inside get blogs by logged in user");
         String username = request.getHeader("username");
         config.sendLogToKafka("Blogs retrieved by user: "+username);
-        return blogRepository.findAllBlogsByUsername(username);
+        List<Blog> blogs = blogRepository.findAllBlogsByUsername(username);
+        if(blogs.isEmpty()){
+            throw new ServiceException("No blogs added by user: "+username);
+        }
+        else{
+            return blogs;
+        }
     }
 
     public Blog getOneBlog(String blogname){
@@ -95,10 +101,9 @@ public class BlogDataService {
 
     public List<Blog> getAllBlogsByCategory(String category) throws ServiceException {
         log.info("inside get all blogs by category");
-        String username = request.getHeader("username");
         List<Blog> blogs = blogRepository.findAllBlogsByCategory(category);
         if(blogs.isEmpty()){
-            throw new ServiceException("No blogs added by user:"+username);
+            throw new ServiceException("No blogs added with category:"+category);
         }
         else{
             return blogs;
