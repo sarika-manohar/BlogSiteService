@@ -16,8 +16,8 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler
     public Map<String,String> InvalidData(ServiceException ex){
         Map<String,String> errorMap = new HashMap<>();
-        errorMap.put("Status code", String.valueOf(HttpStatus.BAD_REQUEST));
-        errorMap.put("Error Message", ex.getMessage());
+        errorMap.put("status", String.valueOf(HttpStatus.BAD_REQUEST));
+        errorMap.put("error", ex.getMessage());
         return errorMap;
     }
 }

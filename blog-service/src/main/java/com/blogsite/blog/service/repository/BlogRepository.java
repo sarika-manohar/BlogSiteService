@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BlogRepository extends MongoRepository<Blog,String> {
@@ -17,4 +18,6 @@ public interface BlogRepository extends MongoRepository<Blog,String> {
     List<Blog> findByTimestampBetween(LocalDate startDate, LocalDate endDate);
 
     List<Blog> findAllBlogsByCategory(String category);
+
+    Blog findByBlogid(String blogID);
 }

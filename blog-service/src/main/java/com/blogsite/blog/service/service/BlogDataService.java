@@ -53,12 +53,13 @@ public class BlogDataService {
         return blogRepository.save(blog);
     }
 
-    public void deleteBlog(String blogname) throws Exception {
+    public void deleteBlog(String blogID) throws Exception {
         log.info("inside delete blog method");
         String username = request.getHeader("username");
-        Blog deleteBlog = blogRepository.findByBlogname(blogname);
+        Blog deleteBlog = blogRepository.findByBlogid(blogID);
+        log.info(String.valueOf(deleteBlog));
         if(deleteBlog==null){
-            throw new ServiceException(blogname+" doesn't exist");
+            throw new ServiceException(blogID+" doesn't exist");
         }
         else if(username.equals(deleteBlog.getUsername())) {
             blogRepository.delete(deleteBlog);
@@ -86,11 +87,11 @@ public class BlogDataService {
         }
     }
 
-    public Blog getOneBlog(String blogname){
+    public Blog getOneBlog(String blogid){
         log.info("inside get individual blog");
-        log.info(blogname);
+        log.info(blogid);
         config.sendLogToKafka("Individual blog retrieved");
-        return blogRepository.findByBlogname(blogname);
+        return blogRepository.findByBlogid(blogid);
     }
 
     public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){

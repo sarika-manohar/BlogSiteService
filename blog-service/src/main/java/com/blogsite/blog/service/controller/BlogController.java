@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@CrossOrigin("*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/blogsite")
 @Slf4j
@@ -29,12 +29,12 @@ public class BlogController {
         return blog.getBlogname() + " added successfully";
     }
 
-    @DeleteMapping (value="/user/delete/{blogname}")
-    public String deleteBlog(@PathVariable String blogname) throws Exception {
+    @DeleteMapping (value="/user/delete/{blogid}")
+    public String deleteBlog(@PathVariable String blogid) throws Exception {
         log.info("inside delete blog controller");
-        blogDataService.deleteBlog(blogname);
-        config.sendLogToKafka(blogname+" deleted successfully");
-        return blogname+" deleted successfully";
+        blogDataService.deleteBlog(blogid);
+        config.sendLogToKafka(blogid+" deleted successfully");
+        return blogid+" deleted successfully";
     }
 
     @GetMapping(value="/user/getall")
@@ -54,9 +54,9 @@ public class BlogController {
         return blogDataService.getMyBlogs();
     }
 
-    @GetMapping(value="/user/getBlog/{blogname}")
-    public Blog getIndividualBlogs(@PathVariable String blogname) throws Exception {
-        return blogDataService.getOneBlog(blogname);
+    @GetMapping(value="/user/getBlog/{blogid}")
+    public Blog getIndividualBlogs(@PathVariable String blogid) throws Exception {
+        return blogDataService.getOneBlog(blogid);
     }
 
     @GetMapping(value="/user/getBlogsBtwDateRange")

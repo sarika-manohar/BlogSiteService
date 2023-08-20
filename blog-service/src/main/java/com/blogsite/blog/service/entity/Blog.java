@@ -13,7 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Document(collection = "blog")
 public class Blog{
-    @Id private String blogname;
+    @Id private String blogid;
+    private String blogname;
     private String category;
     private String article;
     private String authorname;
