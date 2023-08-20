@@ -167,8 +167,8 @@ export async function action({ request, params }) {
   console.log(request.method);
 
   const reqData = {
-    authorName: data.get("authorName"),
-    blogName: data.get("blogName"),
+    authorname: data.get("authorName"),
+    blogname: data.get("blogName"),
     category: data.get("category"),
     article: data.get("article"),
   };
@@ -187,15 +187,16 @@ export async function action({ request, params }) {
           { status: error.response.status }
         );
       }
-    } else if (request.method === "PUT") {
-      const blogId = params.id;
-      const updateUrl = updateBlogUrl + `/${blogId}`;
-      const res = await axios.put(updateUrl, reqData, {
-        headers: {
-          Authorization,
-        },
-      });
-    }
+    } 
+    // else if (request.method === "PUT") {
+    //   const blogId = params.id;
+    //   const updateUrl = updateBlogUrl + `/${blogId}`;
+    //   const res = await axios.put(updateUrl, reqData, {
+    //     headers: {
+    //       Authorization,
+    //     },
+    //   });
+    // }
   } catch (error) {
     return json(
       { errorMsg: error.response.data.error },

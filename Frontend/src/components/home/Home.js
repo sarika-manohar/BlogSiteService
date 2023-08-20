@@ -37,7 +37,7 @@ export default function Home() {
   const getBlogs = blogs ? blogs : myBlogs;
   const uniqueCategory = [
     "All",
-    ...new Set(getBlogs.data.map((blog) => blog.category)),
+    ...new Set(getBlogs.map((blog) => blog.category)),
   ];
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -48,15 +48,14 @@ export default function Home() {
           <div>
             {location.pathname === "/blogs" && <Filter category={uniqueCategory} />}
           </div>
-
           <Grid container spacing={3}>
-            {getBlogs.data.length > 0 &&
-              getBlogs.data.map((blog) => (
-                <Grid item key={blog._id} xs={12} sm={6} md={4}>
+            {getBlogs.length > 0 &&
+              getBlogs.map((blog) => (
+                <Grid item key={blog.blogid} xs={12} sm={6} md={4}>
                   <BlogCard blog={blog} />
                 </Grid>
               ))}
-            {getBlogs.data.length === 0 && (
+            {getBlogs.length === 0 && (
               <EmptyResults text={location.pathname==="/myBlogs"?"No Blogs to display": "No results found for selected criteria."} />
             )}
           </Grid>

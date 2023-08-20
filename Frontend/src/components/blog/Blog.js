@@ -37,7 +37,11 @@ export default function Blog() {
     navigate("..");
   };
 
-  const featuredPosts = [allBlogsData.data[0], allBlogsData.data[2]];
+  const randomPost = () => Math.floor(Math.random() * allBlogsData.length);
+  const featuredPosts = [
+    allBlogsData[randomPost()],
+    allBlogsData[randomPost()],
+  ];
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -49,21 +53,21 @@ export default function Blog() {
               icon={<ArrowBackIosNewIcon />}
               label="Blogs"
               onClick={handleChipClick}
-              sx={{my:5,fontSize:18}}
+              sx={{ my: 5, fontSize: 18 }}
             />
           </div>
-          <MainFeaturedPost blog={blogData.data} />
+          <MainFeaturedPost blog={blogData} />
           <Grid container spacing={4}>
             {featuredPosts.map((blog) => (
               <FeaturedPost key={blog._id} blog={blog} />
             ))}
           </Grid>
           <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Main blog={blogData.data} />
+            <Main blog={blogData} />
             <Sidebar
-              title={blogData.data.authorName}
-              description={blogData.data.createdAt}
-              category={blogData.data.category}
+              title={blogData.authorname}
+              description={blogData.timestamp}
+              category={blogData.category}
             />
           </Grid>
         </main>
@@ -73,10 +77,12 @@ export default function Blog() {
 }
 
 export async function loader({ request, params }) {
+  const token = getAuthToken();
+  const Authorization = "Bearer " + token;
   const url = `${blogURL}/${params.id}`;
   console.log(url);
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, { headers: { Authorization } });
     console.log(response.data);
     return response.data;
   } catch (error) {

@@ -21,8 +21,9 @@ const BlogCard = (props) => {
   const [deleteBlog, setDeleteBlog] = useState(false);
   const submit = useSubmit();
   const isLoggedIn = useRouteLoaderData("token-loader");
-  const { blogName, article, _id } = props.blog;
+  const { blogname, article, blogid, category } = props.blog;
   const content = article.substring(0, 150) + "...";
+  const img = `https://source.unsplash.com/random?${category}&${Math.random()}`;
 
   const backBtnHandler = () => {
     setModalOpen(false);
@@ -30,7 +31,7 @@ const BlogCard = (props) => {
   const okBtnHandler = () => {
     setDeleteBlog(true);
     setModalOpen(false);
-    submit(null, { method: "delete", action: `/blogs/${_id}` });
+    submit(null, { method: "delete", action: `/blogs/${blogid}` });
   };
 
   const blogDeleteHandler = () => {
@@ -46,37 +47,29 @@ const BlogCard = (props) => {
             // 16:9
             pt: "56.25%",
           }}
-          image="https://source.unsplash.com/random?wallpapers"
+          image = {img}
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5">
-            {blogName}
+            {blogname}
           </Typography>
           <Typography variant="body1">{content}</Typography>
         </CardContent>
         <CardActions>
-          {!isLoggedIn && (
-            <Link to={`/blogs/${_id}`} style={{ textDecoration: "none" }}>
+          {/* {!isLoggedIn && (
+            <Link to={`/blogs/${blogid}`} style={{ textDecoration: "none" }}>
               <Button sx={{ color: "#50bfa0" }}>View</Button>
             </Link>
-          )}
+          )} */}
           {isLoggedIn && (
-            <Link to={`/blogs/${_id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/blogs/${blogid}`} style={{ textDecoration: "none" }}>
               <IconButton aria-label="delete">
                 <VisibilityIcon sx={{ color: "#50bfa0" }} />
               </IconButton>
             </Link>
           )}
           {isLoggedIn && (
-            <Link to={`/blogs/${_id}/edit`} style={{ textDecoration: "none" }}>
-              {/* <Button size="small">Edit</Button> */}
-              <IconButton aria-label="delete">
-                <ModeEditIcon sx={{ color: "#50bfa0" }} />
-              </IconButton>
-            </Link>
-          )}
-          {isLoggedIn && (
-            <IconButton aria-label="delete" onClick={blogDeleteHandler}>
+            <IconButton aria-label="delete" onClick={blogDeleteHandler} >
               <DeleteIcon sx={{ color: "#50bfa0" }} />
             </IconButton>
           )}

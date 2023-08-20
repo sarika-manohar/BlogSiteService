@@ -153,18 +153,18 @@ export async function action({ request, params }) {
   const data = await request.formData();
 
   const signUpData = {
-    name: data.get("name"),
+    username: data.get("name"),
     email: data.get("email"),
     password: data.get("password"),
   };
 
   try {
     const res = await axios.post(registerURL, signUpData);
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
-    }
+    // if (res.data.token) {
+    //   localStorage.setItem("token", res.data.token);
+    // }
     console.log(res.data.token);
-    return redirect("/blogs");
+    return redirect("/login");
   } catch (error) {
     return json(
       { errorMsg: error.response.data.error },

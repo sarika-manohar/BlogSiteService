@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
 function MainFeaturedPost(props) {
-  const { blogName } = props.blog;
+  const { blogname } = props.blog;
   const url = "https://source.unsplash.com/random?wallpapers";
 
   return (
@@ -45,7 +45,7 @@ function MainFeaturedPost(props) {
             }}
           >
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {blogName}
+              {blogname}
             </Typography>
           </Box>
         </Grid>

@@ -78,10 +78,10 @@ const SignIn = (props) => {
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
                   autoFocus
                 />
                 <TextField
@@ -131,15 +131,15 @@ export default SignIn;
 export async function action({ request, params }) {
   const data = await request.formData();
   const loginData = {
-    email: data.get("email"),
+    username: data.get("username"),
     password: data.get("password"),
   };
   console.log(loginData);
   try {
     const res = await axios.post(loginURL, loginData);
-    console.log(res.data);
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
+    console.log(res.data.substring(7));
+    if (res.data.substring(7)) {
+      localStorage.setItem("token", res.data.substring(7));
     }
     return redirect("/blogs");
   } catch (error) {

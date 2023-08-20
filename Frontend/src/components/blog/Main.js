@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import Markdown from './Markdown';
 
 function Main(props) {
-  const { article, blogName } = props.blog;
+  const { article, blogname } = props.blog;
 
   return (
     <>
@@ -16,7 +16,7 @@ function Main(props) {
       md={8}
     >
       <Typography variant="h4" gutterBottom sx={{mb:2}}>
-        {blogName}
+        {blogname}
       </Typography>
       <Divider />
       <Typography variant="subtitle1" gutterBottom sx={{mt:2}}>
