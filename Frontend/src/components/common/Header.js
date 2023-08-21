@@ -67,7 +67,7 @@ const Header = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{ backgroundColor: "#121138" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#5F264A" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <BookIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -153,13 +153,13 @@ const Header = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Link to={`/blogs`} style={{ textDecoration: "none" }}>
-                <Button sx={{ my: 2, color: "#50bfa0", display: "block" }}>
+                <Button sx={{ my: 2, color: "#fff", display: "block" }}>
                   Blogs
                 </Button>
               </Link>
               <Link to={`/blogs/create`} style={{ textDecoration: "none" }}>
                 <Button
-                  sx={{ my: 2, color: "#50bfa0", display: "block" }}
+                  sx={{ my: 2, color: "#fff", display: "block" }}
                   onClick={createBlogHandler}
                 >
                   Create Blog
@@ -167,7 +167,7 @@ const Header = () => {
               </Link>
               <Link to={`/myBlogs`} style={{ textDecoration: "none" }}>
                 <Button
-                  sx={{ my: 2, color: "#50bfa0", display: "block" }}
+                  sx={{ my: 2, color: "#fff", display: "block" }}
                   onClick={myBlogsHandler}
                 >
                   My Blogs
@@ -180,7 +180,7 @@ const Header = () => {
                 <Button
                   textAlign="center"
                   type="submit"
-                  sx={{ backgroundColor: "#50bfa0" }}
+                  sx={{ backgroundColor: "#B0A4A4" }}
                   variant="contained"
                   onClick={logoutHandler}
                 >

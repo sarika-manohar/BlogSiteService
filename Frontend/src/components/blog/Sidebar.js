@@ -25,7 +25,7 @@ function Sidebar(props) {
   return (
     <Grid item xs={12} md={4}>
       <Paper elevation={0} sx={{ bgcolor: "grey.200" }}>
-        <Typography sx={{ bgcolor: "grey.200" }} variant="h6" gutterBottom>
+        <Typography sx={{ml: 2, bgcolor: "grey.200" }} variant="h6" gutterBottom>
           About
         </Typography>
         <CardHeader
@@ -35,7 +35,7 @@ function Sidebar(props) {
         />
       </Paper>
       <Paper elevation={0} sx={{ bgcolor: "grey.200" }}>
-        <Typography sx={{ bgcolor: "grey.200" }} variant="h6" gutterBottom>
+        <Typography sx={{ml: 2, bgcolor: "grey.200" }} variant="h6" gutterBottom>
           Category
         </Typography>
         <CardHeader subheader={props.category} />

@@ -27,6 +27,7 @@ const NotFound = () => {
     >
       <Typography variant="h1" style={{ color: "white" }}>
         {error.status}
+        {/* {JSON.stringify(error)} */}
       </Typography>
       <Typography variant="h6" style={{ color: "white" }}>
         {message}

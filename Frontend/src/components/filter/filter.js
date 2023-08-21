@@ -14,40 +14,46 @@ import { useNavigate } from "react-router-dom";
 
 function Filter(props) {
   const navigate = useNavigate();
-  const [toDate, setToDate] = React.useState("");
-  const [fromDate, setFromDate] = React.useState("");
+  const [endDate, setendDate] = React.useState("");
+  const [startDate, setstartDate] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   function handleClick() {
-    if (!fromDate && !toDate) {
-      navigate(`/blogs?category=${category}`);
+    if (category && startDate && endDate) {
+      console.log(startDate, endDate, category);
+      navigate(
+        `/blogs?category=${category}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`
+      );
       return;
     }
-    navigate(
-      `/blogs?category=${category}&fromDate=${fromDate.toISOString()}&toDate=${toDate.toISOString()}`
-    );
+    if(startDate && endDate){
+      console.log(startDate, endDate);
+      navigate(`/blogs?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
+      return;
+    }
+    navigate(`/blogs?category=${category}`);
   }
 
   const filterEligibility = () => {
-    // console.log(category,toDate,fromDate);
-    // console.log(category || (toDate && fromDate));
+    // console.log(category,endDate,startDate);
+    // console.log(category || (endDate && startDate));
     // console.log()
-    // if(category ||(toDate & fromDate)){
+    // if(category ||(endDate & startDate)){
     //     console.log("inside");
     // }
-    return !(category | (toDate & fromDate));
+    return !(category | (endDate & startDate));
   };
 
   const clearFiltersHandler = () => {
     setCategory("");
-    setFromDate("");
-    setToDate("");
+    setstartDate("");
+    setendDate("");
     navigate("/blogs");
   };
 
   React.useEffect(() => {
     filterEligibility();
-  }, [filterEligibility, category, toDate, fromDate]);
+  }, [filterEligibility, category, endDate, startDate]);
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -72,22 +78,23 @@ function Filter(props) {
     >
       <Grid item xs={12} sm={6} md={6}>
         <Item>
-          {/* {JSON.stringify(toDate)} */}
-          {/* {toDate} */}
+          {/* {JSON.stringify(endDate)} */}
+          {/* {new Date(endDate).toLocaleDateString('en-US', {year: "numeric", month: "2-digit", day: "numeric"})} */}
+          {/* {endDate} */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               sx={{mr: 2}}
-              value={fromDate}
+              value={startDate}
               label="From Date"
-              onChange={(newValue) => setFromDate(newValue)}
+              onChange={(newValue) => setstartDate(newValue)}
             />
             {/* <span >
                                 to
                             </span> */}
             <DatePicker
-              value={toDate}
+              value={endDate}
               label="To Date"
-              onChange={(newValue) => setToDate(newValue)}
+              onChange={(newValue) => setendDate(newValue)}
             />
           </LocalizationProvider>
         </Item>
@@ -118,7 +125,7 @@ function Filter(props) {
       <Grid item xs={12} sm={6} md={3} sx={{display: "flex", alignItems: "center", justifyContent: "center"}}>
         {/* <Item> */}
           <Button
-            sx={{mr: 2, backgroundColor: "#121138"}}
+            sx={{mr: 2, backgroundColor: "#5F264A"}}
             onClick={handleClick}
             // loading={loading}
             // loadingPosition="start"
@@ -129,7 +136,7 @@ function Filter(props) {
           </Button>
 
           <Button
-            sx={{backgroundColor: "#121138"}}
+            sx={{backgroundColor: "#5F264A"}}
             variant="contained"
             onClick={clearFiltersHandler}
           >

@@ -73,7 +73,7 @@ const BlogForm = (props) => {
             alignItems: "center",
           }}
         >
-          <Card sx={{ backgroundColor: "white", padding: 2, boxShadow: 3 }}>
+          <Card sx={{ backgroundColor: "white", padding: 2, boxShadow: 3, mb: 5 }}>
             <CardContent>
               <Typography component="h1" variant="h5">
                 {props.method === "post" ? "Create" : "Update"} Blog
@@ -138,13 +138,13 @@ const BlogForm = (props) => {
                   <Button
                     type="submit"
                     variant="contained"
-                    sx={{ mt: 3, mb: 2, backgroundColor: "#121138" }}
+                    sx={{ mt: 3, mb: 2, backgroundColor: "#5F264A" }}
                   >
                     {props.method === "post" ? "Create" : "Update"}
                   </Button>
                   <Button
                     variant="contained"
-                    sx={{ mt: 3, mb: 2, ml: 2, backgroundColor: "#121138" }}
+                    sx={{ mt: 3, mb: 2, ml: 2, backgroundColor: "#5F264A" }}
                     onClick={cancelHandler}
                   >
                     Cancel

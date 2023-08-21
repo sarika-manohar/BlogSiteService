@@ -69,21 +69,21 @@ const paramConstructor = (request, searchParams) => {
   let params = null;
   if (
     request.url.includes("category") &&
-    request.url.includes("fromDate") &&
-    request.url.includes("toDate")
+    request.url.includes("startDate") &&
+    request.url.includes("endDate")
   ) {
     params = {
       category: searchParams.get("category"),
-      fromDate: searchParams.get("fromDate"),
-      toDate: searchParams.get("toDate"),
+      fromDate: searchParams.get("startDate"),
+      toDate: searchParams.get("endDate"),
     };
   } else if (
-    request.url.includes("fromDate") &&
-    request.url.includes("toDate")
+    request.url.includes("startDate") &&
+    request.url.includes("endDate")
   ) {
     params = {
-      fromDate: searchParams.get("fromDate"),
-      toDate: searchParams.get("toDate"),
+      fromDate: searchParams.get("startDate"),
+      toDate: searchParams.get("endDate"),
     };
   } else if (request.url.includes("category")) {
     params = {
@@ -108,6 +108,7 @@ export async function loader({ request, params }) {
       console.log(response.data);
       return response.data;
     } catch (error) {
+      console.log(error)
       throw json(
         { errorMsg: error.response.data.error },
         { status: error.response.status }
@@ -115,7 +116,7 @@ export async function loader({ request, params }) {
     }
   } else {
     const searchParams = new URL(request.url).searchParams;
-
+    console.log(searchParams);
     const params = paramConstructor(request, searchParams);
     try {
       const response = await axios.get(getAllBlogsURL, { params });

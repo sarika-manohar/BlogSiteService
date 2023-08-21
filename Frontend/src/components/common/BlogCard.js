@@ -55,7 +55,7 @@ const BlogCard = (props) => {
           </Typography>
           <Typography variant="body1">{content}</Typography>
         </CardContent>
-        <CardActions>
+        <CardActions sx={{display: "flex", alignItems: "end", justifyContent: "space-between"}}>
           {/* {!isLoggedIn && (
             <Link to={`/blogs/${blogid}`} style={{ textDecoration: "none" }}>
               <Button sx={{ color: "#50bfa0" }}>View</Button>
@@ -64,13 +64,13 @@ const BlogCard = (props) => {
           {isLoggedIn && (
             <Link to={`/blogs/${blogid}`} style={{ textDecoration: "none" }}>
               <IconButton aria-label="delete">
-                <VisibilityIcon sx={{ color: "#50bfa0" }} />
+                <VisibilityIcon sx={{ color: "#5F264A" }} />
               </IconButton>
             </Link>
           )}
           {isLoggedIn && (
             <IconButton aria-label="delete" onClick={blogDeleteHandler} >
-              <DeleteIcon sx={{ color: "#50bfa0" }} />
+              <DeleteIcon sx={{ color: "#5F264A" }} />
             </IconButton>
           )}
         </CardActions>
