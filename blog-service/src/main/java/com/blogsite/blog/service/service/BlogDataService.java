@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,12 +55,13 @@ public class BlogDataService {
         return blogRepository.save(blog);
     }
 
-    public void deleteBlog(String blogname) throws Exception {
+    public void deleteBlog(String blogID) throws Exception {
         log.info("inside delete blog method");
         String username = request.getHeader("username");
-        Blog deleteBlog = blogRepository.findByBlogname(blogname);
+        Blog deleteBlog = blogRepository.findByBlogid(blogID);
+        log.info(String.valueOf(deleteBlog));
         if(deleteBlog==null){
-            throw new ServiceException(blogname+" doesn't exist");
+            throw new ServiceException(blogID+" doesn't exist");
         }
         else if(username.equals(deleteBlog.getUsername())) {
             blogRepository.delete(deleteBlog);
@@ -68,10 +71,6 @@ public class BlogDataService {
         }
     }
 
-    public List<Blog> getAllBlogs() throws Exception {
-        log.info("inside get all blogs method");
-        return blogRepository.findAll();
-    }
 
     public List<Blog> getMyBlogs() throws ServiceException {
         log.info("inside get blogs by logged in user");
@@ -86,17 +85,11 @@ public class BlogDataService {
         }
     }
 
-    public Blog getOneBlog(String blogname){
+    public Blog getOneBlog(String blogid){
         log.info("inside get individual blog");
-        log.info(blogname);
+        log.info(blogid);
         config.sendLogToKafka("Individual blog retrieved");
-        return blogRepository.findByBlogname(blogname);
-    }
-
-    public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){
-        log.info("inside get blogs between date range");
-        config.sendLogToKafka("Blogs retrieved from "+startDate+" to "+endDate);
-        return blogRepository.findByTimestampBetween(startDate,endDate);
+        return blogRepository.findByBlogid(blogid);
     }
 
     public List<Blog> getAllBlogsByCategory(String category) throws ServiceException {

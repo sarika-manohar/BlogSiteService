@@ -14,7 +14,10 @@ public interface BlogRepository extends MongoRepository<Blog,String> {
 
     List<Blog> findAllBlogsByUsername(String username);
 
-    List<Blog> findByTimestampBetween(LocalDate startDate, LocalDate endDate);
+    List<Blog> findByTimestampBetween(Date startDate, Date endDate);
 
     List<Blog> findAllBlogsByCategory(String category);
+    List<Blog> findByCategoryAndTimestampBetween(String category, Date startDate, Date endDate);
+
+    Blog findByBlogid(String blogID);
 }
