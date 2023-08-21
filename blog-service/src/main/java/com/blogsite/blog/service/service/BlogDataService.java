@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,10 +71,6 @@ public class BlogDataService {
         }
     }
 
-    public List<Blog> getAllBlogs() throws Exception {
-        log.info("inside get all blogs method");
-        return blogRepository.findAll();
-    }
 
     public List<Blog> getMyBlogs() throws ServiceException {
         log.info("inside get blogs by logged in user");
@@ -92,12 +90,6 @@ public class BlogDataService {
         log.info(blogid);
         config.sendLogToKafka("Individual blog retrieved");
         return blogRepository.findByBlogid(blogid);
-    }
-
-    public List<Blog> getBlogsBetweenDateRange(LocalDate startDate, LocalDate endDate){
-        log.info("inside get blogs between date range");
-        config.sendLogToKafka("Blogs retrieved from "+startDate+" to "+endDate);
-        return blogRepository.findByTimestampBetween(startDate,endDate);
     }
 
     public List<Blog> getAllBlogsByCategory(String category) throws ServiceException {
