@@ -59,7 +59,7 @@ const SignUp = (props) => {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{padding: 4}}>
         <CssBaseline />
         <div style={{ margin: "15% auto" }}>
           <Card sx={{ backgroundColor: "white", padding: 2, boxShadow: 3 }}>

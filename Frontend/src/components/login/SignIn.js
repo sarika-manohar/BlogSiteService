@@ -54,7 +54,7 @@ const SignIn = (props) => {
   };
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{padding: 5}}>
         <CssBaseline />
         <div style={{margin: "20% auto"}}>
         <Card sx={{ backgroundColor: "white", padding: 2, boxShadow: 3 }}>

@@ -90,7 +90,7 @@ const Header = () => {
                 to={isLoggedIn ? "/blogs" : "/"}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                BLOG-CONNECT
+                BLOGCART
               </Link>
             </Typography>
 
